@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Actividades{% endblock %}
+
+{% block content %}
+<h2>Lista de Actividades</h2>
+<ul>
+    {% for activity in activities %}
+    <li>
+        {{ activity.description }} - {{ activity.start_time }} 
+        por {{ activity.first_name }} {{ activity.last_name }} 
+        {% if activity.end_time %} (Finalizada: {{ activity.end_time }}){% endif %}
+        <form action="/activities/{{ activity.id }}/end" method="post" style="display:inline;">
+            <button type="submit">Actualizar Hora de Finalización</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/activities/new">Agregar Actividad</a>
+{% endblock %}

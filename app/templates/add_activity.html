@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Actividad{% endblock %}
+
+{% block content %}
+<h2>Agregar Nueva Actividad</h2>
+<form action="/activities" method="post" id="activityForm">
+    <input type="text" name="first_name" placeholder="Nombre" required>
+    <input type="text" name="last_name" placeholder="Apellido" required>
+    <input type="text" name="description" placeholder="Descripción" required>
+    <label for="start_time">Hora de Inicio:</label>
+    <input type="datetime-local" id="start_time" name="start_time" required>
+    
+    <label for="end_time">Fecha de Finalización:</label>
+    <input type="datetime-local" id="end_time" name="end_time" required>
+
+    <label for="total_hours">Total de Horas Trabajadas:</label>
+    <input type="text" id="total_hours" name="total_hours" readonly>
+
+    <button type="submit">Agregar</button>
+</form>
+<a href="/activities">Volver a la lista de actividades</a>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('activityForm').addEventListener('change', function() {
+            const startTime = new Date(document.getElementById('start_time').value);
+            const endTime = new Date(document.getElementById('end_time').value);
+            
+            if (!isNaN(startTime) && !isNaN(endTime) && endTime > startTime) {
+                const diff = (endTime - startTime) / (1000 * 60 * 60); // Diferencia en horas
+                document.getElementById('total_hours').value = diff.toFixed(2); // Mostrar horas con 2 decimales
+            } else {
+                document.getElementById('total_hours').value = ''; // Limpiar el campo si hay un error
+            }
+        });
+    });
+    </script>
+{% endblock %}

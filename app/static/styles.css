@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center; /* Centrar el texto del encabezado */
+}
+
+nav {
+    margin: 10px 0; /* Espacio entre el encabezado y la navegación */
+}
+
+nav a {
+    color: #ffffff;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}
+
+h2 {
+    color: #35424a;
+    text-align: center; /* Centrar el título */
+}
+
+form {
+    background: #ffffff; /* Fondo blanco para el formulario */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para el formulario */
+    max-width: 500px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centrando el formulario */
+}
+
+input[type="text"],
+input[type="datetime-local"],
+button {
+    width: 100%; /* Hacer que los campos ocupen todo el ancho */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Espacio entre campos */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+button {
+    background-color: #35424a; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+}
+
+button:hover {
+    background-color: #455a64; /* Color más oscuro al pasar el ratón */
+}
+
+a {
+    display: inline-block; /* Alinear el enlace como un bloque */
+    margin-top: 10px; /* Espaciado superior */
+    color: #35424a; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}

@@ -1,0 +1,15 @@
+# Ignorar el entorno virtual
+venv/
+*.pyc
+__pycache__/
+
+# Ignorar archivos de configuración de entornos locales
+instance/
+.env
+
+# Ignorar claves privadas
+*.pem
+
+# Ignorar archivos de sistema
+.DS_Store
+*.log
