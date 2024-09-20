@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, jsonify
 from app.models import Activity, db
 from datetime import datetime
-from controllers.admin_s3 import connectionS3,save_file,upload_file_s3
+from ..controllers.admin_s3 import connectionS3,save_file,upload_file_s3
 
 activity_bp = Blueprint('activity_bp', __name__)
 

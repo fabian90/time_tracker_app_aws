@@ -1,5 +1,5 @@
 import boto3
-from ...config.keys import ACCESS_KEY, SECRET_KEY
+from config.keys import ACCESS_KEY, SECRET_KEY
 bucket_name = "aws-bucket-cymetria-15"
 
 def connectionS3():
