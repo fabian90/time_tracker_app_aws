@@ -1,6 +1,5 @@
 from flask import render_template
 from app import create_app
-
 # Crear la aplicación
 app = create_app()
 

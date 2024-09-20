@@ -1,5 +1,7 @@
 # Ignorar el entorno virtual
 venv/
+
+# Ignorar archivos de Python
 *.pyc
 __pycache__/
 
@@ -10,6 +12,23 @@ instance/
 # Ignorar claves privadas
 *.pem
 
-# Ignorar archivos de sistema
+# Ignorar archivos de sistema y otros
 .DS_Store
 *.log
+.cache/
+.dotnet/
+.git/
+.local/
+.ssh/
+.vscode-server/
+
+# Ignorar historial y configuración de shell
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.wget-hsts
+.lesshst
+
+# Ignorar archivos sensibles
+keys.py

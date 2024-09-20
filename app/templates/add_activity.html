@@ -16,7 +16,7 @@
 
     <label for="total_hours">Total de Horas Trabajadas:</label>
     <input type="text" id="total_hours" name="total_hours" readonly>
-
+    <input type="file" name="photo"> <br> <br>
     <button type="submit">Agregar</button>
 </form>
 <a href="/activities">Volver a la lista de actividades</a>
@@ -24,8 +24,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('activityForm').addEventListener('change', function() {
             const startTime = new Date(document.getElementById('start_time').value);
-            const endTime = new Date(document.getElementById('end_time').value);
-            
+            const endTime = new Date(document.getElementById('end_time').value);           
             if (!isNaN(startTime) && !isNaN(endTime) && endTime > startTime) {
                 const diff = (endTime - startTime) / (1000 * 60 * 60); // Diferencia en horas
                 document.getElementById('total_hours').value = diff.toFixed(2); // Mostrar horas con 2 decimales

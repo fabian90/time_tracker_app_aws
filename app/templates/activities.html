@@ -5,16 +5,24 @@
 {% block content %}
 <h2>Lista de Actividades</h2>
 <ul>
+    <form method="GET" action="/activities">
+        <input type="text" name="first_name" placeholder="Nombre" value="{{ request.args.first_name }}">
+        <input type="text" name="last_name" placeholder="Apellido" value="{{ request.args.last_name }}">
+        <input type="text" name="id" placeholder="ID" value="{{ request.args.id }}">
+        <button type="submit">Buscar</button>
+    </form>
     {% for activity in activities %}
     <li>
         {{ activity.description }} - {{ activity.start_time }} 
         por {{ activity.first_name }} {{ activity.last_name }} 
         {% if activity.end_time %} (Finalizada: {{ activity.end_time }}){% endif %}
+        <img src="https://aws-bucket-cymetria-15.s3.amazonaws.com/images/{{ activity.id }}.jpg" 
+        alt="Imagen de la actividad" style="width:200px;height:auto;">
         <form action="/activities/{{ activity.id }}/end" method="post" style="display:inline;">
             <button type="submit">Actualizar Hora de Finalización</button>
         </form>
     </li>
-    {% endfor %}
+    {% endfor %} 
 </ul>
 <a href="/activities/new">Agregar Actividad</a>
 {% endblock %}
