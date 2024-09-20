@@ -34,25 +34,37 @@ def new_activity():
     return render_template('add_activity.html')
 
 # Ruta para agregar una nueva actividad
-@activity_bp.route('/activities', methods=['POST'])
 def add_activity():
     data = request.form
     file = request.files
-    photo = file["photo"]
-    new_activity = Activity(
-        description=data['description'],
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        start_time=datetime.strptime(data['start_time'], '%Y-%m-%dT%H:%M'),  # Convertir a datetime
-        end_time=datetime.strptime(data['end_time'], '%Y-%m-%dT%H:%M') if data['end_time'] else None  # Usar el formato correcto
-      
-    )
-    db.session.add(new_activity)
-    db.session.commit()
-    session_s3 = connectionS3()
-    photo_path, photo_name = save_file(id, photo)    
-    upload_file_s3(session_s3, photo_path, photo_name)
-    return redirect(url_for('activity_bp.get_activities'))
+    photo = file.get("photo")  # Usar get para evitar KeyError
+    try:
+        if not photo:
+            # Manejar el caso en el que no se proporciona una foto
+            flash("Se requiere una foto para agregar una actividad.", "error")
+            return redirect(url_for('activity_bp.new_activity'))
+
+        new_activity = Activity(
+            description=data['description'],
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            start_time=datetime.strptime(data['start_time'], '%Y-%m-%dT%H:%M'),  # Convertir a datetime
+            end_time=datetime.strptime(data['end_time'], '%Y-%m-%dT%H:%M') if data['end_time'] else None  # Usar el formato correcto
+        )
+        
+        db.session.add(new_activity)
+        db.session.commit()
+
+        session_s3 = connectionS3()
+        photo_path, photo_name = save_file(new_activity.id, photo)  # Asegúrate de usar el ID correcto aquí
+        upload_file_s3(session_s3, photo_path, photo_name)
+
+        flash("Actividad agregada exitosamente.", "success")
+        return redirect(url_for('activity_bp.get_activities'))
+    except Exception as e:
+        db.session.rollback()  # Revertir la sesión en caso de error
+        flash(f"Ocurrió un error al agregar la actividad: {str(e)}", "error")
+        return redirect(url_for('activity_bp.new_activity'))
 
 # Ruta para marcar el final de una actividad
 @activity_bp.route('/activities/<int:id>/end', methods=['POST'])
