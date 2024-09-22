@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>Agregar Nueva Actividad</h2>
-<form action="/activities" method="post" id="activityForm">
+<form action="/activities" method="post" id="activityForm" enctype="multipart/form-data">
     <input type="text" name="first_name" placeholder="Nombre" required>
     <input type="text" name="last_name" placeholder="Apellido" required>
     <input type="text" name="description" placeholder="Descripción" required>

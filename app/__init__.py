@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config.config import Config  # Asegúrate de que esta ruta sea correcta
+from  config.keys import SECRET_KEY_FLASK
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -9,7 +10,7 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-
+    app.secret_key = SECRET_KEY_FLASK 
     db.init_app(app)
     migrate.init_app(app, db)
 

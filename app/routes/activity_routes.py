@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for, jsonify
+from flask import Blueprint, request, render_template, redirect, url_for, jsonify, flash
 from app.models import Activity, db
 from datetime import datetime
 from ..controllers.admin_s3 import connectionS3,save_file,upload_file_s3
@@ -34,6 +34,7 @@ def new_activity():
     return render_template('add_activity.html')
 
 # Ruta para agregar una nueva actividad
+@activity_bp.route('/activities', methods=['POST'])
 def add_activity():
     data = request.form
     file = request.files
